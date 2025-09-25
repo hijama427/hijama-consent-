@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hijama Cupping — Patient Information, Treatment Plan & Consent</title>
+<style>
+  :root{ --sage:#8aa089; --beige:#f3efe7; --stone:#d8d6cf; --ink:#1f2a26; }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;color:var(--ink);background:var(--beige)}
+  header{background:linear-gradient(180deg,var(--sage),#98b09a);color:white;padding:16px}
+  .header-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+  .logo{width:84px;height:84px;border-radius:10px;background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .logo img{max-width:100%;max-height:100%}
+  header h1{margin:0;font-size:1.4rem} header p{margin:.25rem 0 0;opacity:.94} .clinic{font-size:.95rem;opacity:.95}
+  main{max-width:960px;margin:24px auto;padding:0 16px 90px}
+  section{background:white;border:1px solid var(--stone);border-radius:10px;padding:18px;margin:14px 0 18px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  h2{font-size:1.15rem;margin:0 0 10px;color:#173b2c}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  label{font-size:.95rem}
+  input[type="text"], input[type="email"], input[type="date"], input[type="time"], textarea, input[type="tel"]{
+    width:100%;padding:10px;border:1px solid #c9c9c9;border-radius:8px;background:#fbfbfb;
+  }
+  textarea{min-height:96px;resize:vertical}
+  .col-6{grid-column:span 6}
+  .col-3{grid-column:span 3}
+  .col-2{grid-column:span 2}
+  .col-4{grid-column:span 4}
+  .muted{color:#56625c;font-size:.92rem}
+  .list{display:grid;grid-template-columns: 1fr auto;align-items:center;gap:8px 14px;padding:8px 0;border-bottom:1px dashed #e7e4dd}
+  .actions{
+    position:sticky; bottom:0; left:0; right:0;
+    background:rgba(250,248,242,.95);
+    border-top:1px solid var(--stone);
+    padding:10px 16px;
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+  }
+  button{border:1px solid #325a48;background:#2d6a4f;color:white;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+  button.secondary{background:white;color:#2d6a4f;border-color:#98b09a}
+  .sig-pad{border:1px dashed #b9b6ac;border-radius:8px;background:#fffefc}
+  .help{font-size:.85rem;color:#6a6f6b}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  footer{background:#f7f5ef;border-top:1px solid var(--stone);padding:16px;color:#2c3a33}
+  footer .inner{max-width:960px;margin:0 auto;font-size:.95rem;display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap}
+  .price{font-weight:700}
+  @media (max-width:760px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .col-6,.col-4,.col-3,.col-2{grid-column:span 2}
+    .two-col{grid-template-columns:1fr}
+  }
+  /* A4 print layout */
+  @page{size:A4;margin:16mm}
+  @media print{
+    header,.actions{display:none}
+    main{padding:0}
+    section{page-break-inside:avoid}
+    footer{position:fixed;bottom:0;left:0;right:0}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="logo" id="logoBox"><span style="font-size:.8rem;color:#254034;padding:6px;text-align:center">Upload Logo</span></div>
+    <div>
+      <h1>Hijama Healing by Dr Shabz at Aesthetic Wellness</h1>
+      <p>Patient Information, Treatment Plan & Consent — Complete before your appointment.</p>
+      <div class="clinic">
+        <div><strong>Address:</strong> 24A The Lanes Shopping Centre, Birmingham Road, Sutton Coldfield, B72 1YG</div>
+        <div><strong>WhatsApp:</strong> 07466 162016</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <form id="hijama-form">
+    <section aria-labelledby="sec0">
+      <h2 id="sec0">Branding & Appointment</h2>
+      <div class="grid">
+        <div class="col-3">
+          <label for="logo_file">Upload logo (shown on print)</label>
+          <input id="logo_file" name="logo_file" type="file" accept="image/*">
+          <input type="hidden" id="logo_data" name="logo_data">
+        </div>
+        <div class="col-3">
+          <label for="appt_date">Preferred appointment date</label>
+          <input id="appt_date" name="appt_date" type="date">
+        </div>
+        <div class="col-3">
+          <label for="appt_time">Preferred time</label>
+          <input id="appt_time" name="appt_time" type="time">
+        </div>
+        <div class="col-3">
+          <label for="session_type">Session type</label>
+          <input id="session_type" name="session_type" type="text" placeholder="Wet / Dry / Both">
+        </div>
+      </div>
+      <p class="muted price">Pricing: First session £45 · Follow-ups £35</p>
+    </section>
+
+    <section aria-labelledby="sec1">
+      <h2 id="sec1">Patient details</h2>
+      <div class="grid">
+        <div class="col-4">
+          <label for="patient_name">Patient name</label>
+          <input id="patient_name" name="patient_name" type="text" autocomplete="name" required>
+        </div>
+        <div class="col-2">
+          <label for="dob">D.O.B / Age</label>
+          <input id="dob" name="dob" type="date">
+        </div>
+        <div class="col-6">
+          <label for="address">Address</label>
+          <input id="address" name="address" type="text" autocomplete="street-address">
+        </div>
+        <div class="col-3">
+          <label for="phone">Contact no.</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="col-3">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email">
+        </div>
+        <div class="col-3">
+          <label for="gp_name">Doctor’s name</label>
+          <input id="gp_name" name="gp_name" type="text">
+        </div>
+        <div class="col-3">
+          <label for="gp_address">Doctor’s address</label>
+          <input id="gp_address" name="gp_address" type="text">
+        </div>
+        <div class="col-3">
+          <label for="gp_tel">Doctor’s contact number</label>
+          <input id="gp_tel" name="gp_tel" type="tel">
+        </div>
+      </div>
+      <p class="muted">Practitioner must be informed if any of the conditions below apply:</p>
+      <div class="two-col" id="conditions1">
+        <div>
+          <label class="list"><span>1. Prone to bleeding (e.g., purpura, leukaemia, haemophilia, etc.)</span> <input type="checkbox" id="c1" name="c1"></label>
+          <label class="list"><span>2. Dermatitis/psoriasis/contagious skin disease/serious allergies/irritation</span> <input type="checkbox" id="c2" name="c2"></label>
+          <label class="list"><span>3. Acute soft-tissue injury site</span> <input type="checkbox" id="c3" name="c3"></label>
+          <label class="list"><span>4. Trauma, fractures, varicose veins, vessel surface projection, fresh scarring</span> <input type="checkbox" id="c4" name="c4"></label>
+          <label class="list"><span>5. Pregnant (state weeks)</span> <input type="checkbox" id="c5" name="c5"></label>
+          <label class="list"><span>6. Cirrhosis/ascites of the liver</span> <input type="checkbox" id="c6" name="c6"></label>
+        </div>
+        <div>
+          <label class="list"><span>7. Extreme weakness/thinness; inflexible skin</span> <input type="checkbox" id="c7" name="c7"></label>
+          <label class="list"><span>8. Mental disorders; convulsive diseases</span> <input type="checkbox" id="c8" name="c8"></label>
+          <label class="list"><span>9. Malignant tumours</span> <input type="checkbox" id="c9" name="c9"></label>
+          <label class="list"><span>10. Severe oedema or moderate/severe heart disease/heart failure</span> <input type="checkbox" id="c10" name="c10"></label>
+          <label class="list"><span>11. Active tuberculosis (esp. abdomen)</span> <input type="checkbox" id="c11" name="c11"></label>
+          <label class="list"><span>12. Consumed alcohol; hungry, agitated, overtired and/or weak</span> <input type="checkbox" id="c12" name="c12"></label>
+        </div>
+      </div>
+      <label class="col-6" for="cond_notes"><span class="muted">If you ticked any of the above, give details:</span></label>
+      <textarea id="cond_notes" name="cond_notes" placeholder="Add details…"></textarea>
+    </section>
+
+    <section aria-labelledby="sec2">
+      <h2 id="sec2">Medical history & current issues</h2>
+      <p class="muted"><strong>Include</strong> prescribed/non-prescribed medicines (analgesics, anti-inflammatories, tranquilisers, ointments, injections, contraceptives, HRT, warfarin), and if you carry a medical warning card.</p>
+      <textarea id="dx_meds" name="dx_meds" placeholder="Diagnosed health problems and all current medicines…"></textarea>
+      <label for="pains" class="muted" style="margin-top:12px;display:block">Pains or problems you have felt that may <u>not</u> have been reported to your doctor:</label>
+      <textarea id="pains" name="pains" placeholder="Describe pains/problems…"></textarea>
+
+      <div class="two-col" style="margin-top:10px">
+        <div>
+          <label class="list"><span>1. Allergies (medicines e.g., penicillin; latex/rubber; foods)</span> <input type="checkbox" id="m1" name="m1"></label>
+          <label class="list"><span>2. Asthma, eczema, or hay fever</span> <input type="checkbox" id="m2" name="m2"></label>
+          <label class="list"><span>3. Bronchitis or other chest conditions</span> <input type="checkbox" id="m3" name="m3"></label>
+          <label class="list"><span>4. Fainting attacks, blackouts, or epilepsy</span> <input type="checkbox" id="m4" name="m4"></label>
+          <label class="list"><span>5. Heart problems, angina, blood pressure, rheumatic fever</span> <input type="checkbox" id="m5" name="m5"></label>
+          <label class="list"><span>6. Diabetes</span> <input type="checkbox" id="m6" name="m6"></label>
+          <label class="list"><span>7. Excessive bleeding problems</span> <input type="checkbox" id="m7" name="m7"></label>
+          <label class="list"><span>8. Any infectious disease (e.g., HIV/Hepatitis)</span> <input type="checkbox" id="m8" name="m8"></label>
+        </div>
+        <div>
+          <label class="list"><span>9. Liver/kidney disease (e.g., hepatitis)</span> <input type="checkbox" id="m9" name="m9"></label>
+          <label class="list"><span>10. A blood transfusion</span> <input type="checkbox" id="m10" name="m10"></label>
+          <label class="list"><span>Other relevant conditions</span> <input type="checkbox" id="m_other_tick" name="m_other_tick"></label>
+          <textarea id="m_other" name="m_other" placeholder="If other, please specify…" style="margin-top:6px"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec3">
+      <h2 id="sec3">Consent</h2>
+      <p class="muted">I confirm the information given is accurate to the best of my knowledge and I consent to Hijama (cupping) therapy. I understand I can withdraw consent at any time.</p>
+      <div class="grid">
+        <div class="col-3">
+          <label for="patient_signature">Patient signature</label>
+          <canvas id="sig" width="500" height="160" class="sig-pad"></canvas>
+          <div class="help">Sign with your finger or mouse. <a href="#" id="clearSig">Clear</a></div>
+          <input type="hidden" id="patient_signature" name="patient_signature">
+        </div>
+        <div class="col-3">
+          <label for="signed_date">Date</label>
+          <input id="signed_date" name="signed_date" type="date">
+        </div>
+      </div>
+    </section>
+  </form>
+</main>
+
+<div class="actions">
+  <button type="button" class="secondary" id="prefillBtn">Copy prefilled link</button>
+  <button type="button" class="secondary" id="shareBtn">Share (where supported)</button>
+  <button type="button" class="secondary" id="csvBtn">Download CSV</button>
+  <button type="button" class="secondary" id="emailBtn">Compose email</button>
+  <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  <button type="button" id="resetBtn">Reset</button>
+</div>
+
+<footer>
+  <div class="inner">
+    <div>
+      <strong>Hijama Healing by Dr Shabz</strong><br>
+      Aesthetic Wellness — Fitness & Recovery Centre<br>
+      24A The Lanes Shopping Centre, Birmingham Road, Sutton Coldfield, B72 1YG
+    </div>
+    <div>
+      WhatsApp: 07466 162016<br>
+      First session £45 · Follow-ups £35
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- Prefill from query string ----
+(function prefill(){
+  const params = new URLSearchParams(location.search);
+  if(!params.toString()) return;
+  params.forEach((value,key)=>{
+    const el = document.getElementsByName(key)[0] || document.getElementById(key);
+    if(!el) return;
+    if(el.type === 'checkbox'){
+      const v = String(value).toLowerCase();
+      el.checked = (v==='1'||v==='true'||v==='yes'||v==='on'||v==='y');
+    }else if(el.tagName==='TEXTAREA' || ['text','email','tel','date','time','hidden'].includes(el.type)){
+      el.value = decodeURIComponent(value);
+    }
+  });
+})();
+
+// ---- Build a sharable prefilled link from current inputs ----
+function buildPrefillURL(){
+  const form = document.getElementById('hijama-form');
+  const data = new FormData(form);
+  for(const el of form.querySelectorAll('input[type="checkbox"]')){
+    if(!el.checked){ data.delete(el.name); }
+    else{ data.set(el.name, 'true'); }
+  }
+  const q = new URLSearchParams(data).toString();
+  const url = location.origin + location.pathname + (q ? ('?' + q) : '');
+  return url;
+}
+document.getElementById('prefillBtn').addEventListener('click', async ()=>{
+  const url = buildPrefillURL();
+  try{
+    await navigator.clipboard.writeText(url);
+    alert('Prefilled link copied to clipboard!');
+  }catch(e){
+    prompt('Copy this link:', url);
+  }
+});
+
+document.getElementById('shareBtn').addEventListener('click', async ()=>{
+  const url = buildPrefillURL();
+  if (navigator.share){
+    try{
+      await navigator.share({title:'Hijama consent form', text:'Open your prefilled consent form:', url});
+    }catch(e){}
+  }else{
+    alert('Share not supported; link will be copied.');
+    try{ await navigator.clipboard.writeText(url); }catch(e){}
+  }
+});
+
+// ---- CSV export for Google Sheets ----
+document.getElementById('csvBtn').addEventListener('click', ()=>{
+  const form = document.getElementById('hijama-form');
+  const data = new FormData(form);
+  for(const el of form.querySelectorAll('input[type="checkbox"]')){
+    data.set(el.name, el.checked ? 'true' : 'false');
+  }
+  const obj = {};
+  for(const [k,v] of data.entries()){ obj[k]=v; }
+  const headers = Object.keys(obj);
+  const row = headers.map(h=>('"' + String(obj[h]).replace(/"/g,'""') + '"')).join(',');
+  const csv = headers.join(',') + '\n' + row + '\n';
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hijama-consent.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+// ---- Compose email (mailto) ----
+document.getElementById('emailBtn').addEventListener('click', ()=>{
+  const form = document.getElementById('hijama-form');
+  const data = new FormData(form);
+  for(const el of form.querySelectorAll('input[type="checkbox"]')){
+    data.set(el.name, el.checked ? 'Yes' : 'No');
+  }
+  const lines = [];
+  const get = n => (data.get(n)||'').toString();
+  lines.push('New Hijama consent form submission:');
+  lines.push('Patient: ' + get('patient_name'));
+  lines.push('DOB: ' + get('dob'));
+  lines.push('Phone: ' + get('phone'));
+  lines.push('Email: ' + get('email'));
+  lines.push('Address: ' + get('address'));
+  lines.push('GP: ' + get('gp_name') + ' — ' + get('gp_tel'));
+  lines.push('GP Address: ' + get('gp_address'));
+  lines.push('Preferred appt: ' + get('appt_date') + ' ' + get('appt_time') + ' (' + get('session_type') + ')');
+  lines.push('Conditions ticked: c1:' + get('c1') + ', c2:' + get('c2') + ', c3:' + get('c3') + ', c4:' + get('c4') + ', c5:' + get('c5') + ', c6:' + get('c6') + ', c7:' + get('c7') + ', c8:' + get('c8') + ', c9:' + get('c9') + ', c10:' + get('c10') + ', c11:' + get('c11') + ', c12:' + get('c12'));
+  lines.push('Diagnoses/Medicines: ' + get('dx_meds'));
+  lines.push('Unreported pains/problems: ' + get('pains'));
+  lines.push('History: m1:' + get('m1') + ', m2:' + get('m2') + ', m3:' + get('m3') + ', m4:' + get('m4') + ', m5:' + get('m5') + ', m6:' + get('m6') + ', m7:' + get('m7') + ', m8:' + get('m8') + ', m9:' + get('m9') + ', m10:' + get('m10') + ', other:' + get('m_other_tick') + ' — ' + get('m_other'));
+  const body = encodeURIComponent(lines.join('\n'));
+  const mailto = 'mailto:?subject=' + encodeURIComponent('Hijama consent — ' + get('patient_name')) + '&body=' + body;
+  window.location.href = mailto;
+});
+
+// ---- Reset ----
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('hijama-form').reset();
+  const ctx = sig.getContext('2d'); ctx.clearRect(0,0,sig.width,sig.height);
+  document.getElementById('logoBox').innerHTML = '<span style="font-size:.8rem;color:#254034;padding:6px;text-align:center">Upload Logo</span>';
+});
+
+// ---- Signature pad ----
+const sig = document.getElementById('sig');
+const ctx = sig.getContext('2d');
+let drawing=false, prev=null;
+function pos(e){
+  const r = sig.getBoundingClientRect();
+  const x = (e.touches?e.touches[0].clientX:e.clientX)-r.left;
+  const y = (e.touches?e.touches[0].clientY:e.clientY)-r.top;
+  return {x,y};
+}
+function saveSig(){
+  document.getElementById('patient_signature').value = sig.toDataURL('image/png');
+}
+function start(e){ drawing=true; prev=pos(e); e.preventDefault(); }
+function move(e){
+  if(!drawing) return;
+  const p = pos(e);
+  ctx.lineWidth=2; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(prev.x,prev.y); ctx.lineTo(p.x,p.y); ctx.stroke();
+  prev=p; saveSig(); e.preventDefault();
+}
+function end(){ drawing=false; prev=null; saveSig(); }
+sig.addEventListener('mousedown',start);
+sig.addEventListener('mousemove',move);
+window.addEventListener('mouseup',end);
+sig.addEventListener('touchstart',start,{passive:false});
+sig.addEventListener('touchmove',move,{passive:false});
+sig.addEventListener('touchend',end);
+document.getElementById('clearSig').addEventListener('click', (e)=>{
+  e.preventDefault();
+  ctx.clearRect(0,0,sig.width,sig.height);
+  saveSig();
+});
+
+// ---- Logo upload preview ----
+const logoFile = document.getElementById('logo_file');
+logoFile.addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(){
+    document.getElementById('logo_data').value = reader.result;
+    const img = new Image();
+    img.src = reader.result;
+    const box = document.getElementById('logoBox');
+    box.innerHTML='';
+    box.appendChild(img);
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+</body>
+</html>
